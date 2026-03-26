@@ -1,12 +1,17 @@
 ﻿namespace ProceduralMeshes.Script.Common
 {
+    using UnityEngine;
     public interface IMeshGenerator
     {
         int VertexCount { get; }
         int IndexCount { get; }
         
+        Bounds Bounds { get; }
+        
         int JobLength { get; }
         
-        void Execute<S>(int i, S stream) where S : struct, IMeshStreams; 
+        int Resolution { get; set; }
+        
+        void Execute<S>(int i, S streams) where S : struct, IMeshStreams; 
     }
 }
