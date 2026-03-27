@@ -26,4 +26,6 @@
             return job.ScheduleParallel(job._generator.JobLength, 1, dependency);
         }
     }
+
+    public delegate JobHandle MeshJobScheduleDelegate(Mesh mesh, Mesh.MeshData meshData, int resolution, JobHandle dependency);
 }

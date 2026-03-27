@@ -1,5 +1,6 @@
 ﻿namespace ProceduralMeshes.Script.Common
 {
+    using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using Unity.Collections;
@@ -19,7 +20,7 @@
         }
         
         [NativeDisableContainerSafetyRestriction]
-        private NativeArray<TriangleUInt16> _triangles;
+        private NativeArray<int3> _triangles;
         
         [NativeDisableContainerSafetyRestriction]
         private NativeArray<Stream0> _stream0;
@@ -35,7 +36,7 @@
             meshData.SetVertexBufferParams(vertexCount, descriptor);
             descriptor.Dispose();
             
-            meshData.SetIndexBufferParams(indexCount, IndexFormat.UInt16);
+            meshData.SetIndexBufferParams(indexCount, IndexFormat.UInt32);
             
             meshData.subMeshCount = 1;
             meshData.SetSubMesh(0, new SubMeshDescriptor(0, indexCount)
@@ -45,7 +46,7 @@
             }, MeshUpdateFlags.DontRecalculateBounds | MeshUpdateFlags.DontValidateIndices);
             
             _stream0 = meshData.GetVertexData<Stream0>();
-            _triangles = meshData.GetIndexData<ushort>().Reinterpret<TriangleUInt16>(2);
+            _triangles = meshData.GetIndexData<uint>().Reinterpret<int3>(4);
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

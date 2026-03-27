@@ -5,10 +5,24 @@
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class ProceduralMesh : MonoBehaviour
     {
-        [SerializeField, Range(1, 100)]
+        [SerializeField, Range(1, 10000)]
         private int resolution = 1;
         private Mesh _mesh;
 
+        private static MeshJobScheduleDelegate[] jobs =
+        {
+            MeshJob<SquareGrid, MultiStream>.ScheduleParallel,
+            MeshJob<SharedSquareGrid, SingleStream>.ScheduleParallel
+        };
+
+        public enum MeshType
+        {
+            SquareGrid,
+            SharedSquareGrid
+        }
+        
+        [SerializeField]
+        MeshType meshType;
 
         private void Awake()
         {
@@ -23,19 +37,19 @@
         {
             Mesh.MeshDataArray meshDataArray = Mesh.AllocateWritableMeshData(1);
             Mesh.MeshData meshData = meshDataArray[0];
-            MeshJob<SquareGrid, MultiStream>.ScheduleParallel(_mesh, meshData, resolution, default).Complete();
+            jobs[(int)meshType](_mesh, meshData, resolution, default).Complete();
             Mesh.ApplyAndDisposeWritableMeshData(meshDataArray, _mesh);
         }
 
         private void Update()
         {
             GenerateMesh();
-            enabled = false;
+            // enabled = false;
         }
 
         private void OnValidate()
         {
-            enabled = true;
+            // enabled = true;
         }
     }
 }
