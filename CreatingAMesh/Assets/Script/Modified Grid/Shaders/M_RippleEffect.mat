@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: b83b673436d521449afe6d0ed64c1dc8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _RIPPLE
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -48,9 +49,10 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RippleAmplitude: 0.1
-    - _RipplePeriod: 3
-    - _RippleSpeed: 0.1
+    - _RIPPLE: 1
+    - _RippleAmplitude: 0.03
+    - _RipplePeriod: 10
+    - _RippleSpeed: 0.2
     m_Colors:
     - _RippleOrigin: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
