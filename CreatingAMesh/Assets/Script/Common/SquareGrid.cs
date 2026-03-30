@@ -14,13 +14,13 @@
 
         public int Resolution { get; set; }
 
-        public void Execute<S>(int i, S streams) where S : struct, IMeshStreams
+        public void Execute<S>(int u, S streams) where S : struct, IMeshStreams
         {
-            int vi = 4 * i;
-            int ti = 2 * i;
+            int vi = 4 * u;
+            int ti = 2 * u;
             
-            int z = i / Resolution;
-            int x = i - Resolution * z;
+            int z = u / Resolution;
+            int x = u - Resolution * z;
 
             var coordinates = float4(x, x + 1f, z, z + 1f) / Resolution - 0.5f;
 

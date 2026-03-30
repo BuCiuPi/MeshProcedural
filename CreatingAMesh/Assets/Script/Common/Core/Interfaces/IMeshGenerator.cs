@@ -12,6 +12,6 @@
         
         int Resolution { get; set; }
         
-        void Execute<S>(int i, S streams) where S : struct, IMeshStreams; 
+        void Execute<S>(int u, S streams) where S : struct, IMeshStreams; 
     }
 }

@@ -51,7 +51,7 @@ Material:
     - _QueueOffset: 0
     - _RIPPLE: 1
     - _RippleAmplitude: 0.03
-    - _RipplePeriod: 10
+    - _RipplePeriod: 0
     - _RippleSpeed: 0.2
     m_Colors:
     - _RippleOrigin: {r: 0, g: 0, b: 0, a: 0}

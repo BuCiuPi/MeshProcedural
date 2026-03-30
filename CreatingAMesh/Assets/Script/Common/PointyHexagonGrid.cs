@@ -16,23 +16,23 @@
 
         public int Resolution { get; set; }
 
-        public void Execute<S>(int z, S streams) where S : struct, IMeshStreams
+        public void Execute<S>(int u, S streams) where S : struct, IMeshStreams
         {
-            int vi = 7 * Resolution * z;
-            int ti = 6 * Resolution * z;
+            int vi = 7 * Resolution * u;
+            int ti = 6 * Resolution * u;
 
             float h = sqrt(3f) / 4f;
             float2 centerOffset = 0f;
 
             if (Resolution > 1)
             {
-                centerOffset.x = (((z & 1) == 0 ? 0.5f : 1.5f) - Resolution) * h;
+                centerOffset.x = (((u & 1) == 0 ? 0.5f : 1.5f) - Resolution) * h;
                 centerOffset.y = -0.375f * (Resolution - 1);
             }
 
             for (int x = 0; x < Resolution; x++, vi += 7, ti += 6)
             {
-                var center = (float2(2f * h * x, 0.75f * z) + centerOffset) / Resolution;
+                var center = (float2(2f * h * x, 0.75f * u) + centerOffset) / Resolution;
                 var xCoordinates = center.x + float2(-h, h) / Resolution;
                 var zCoordinates = center.y + float4(-0.5f, -0.25f, 0.25f, 0.5f) / Resolution;
 

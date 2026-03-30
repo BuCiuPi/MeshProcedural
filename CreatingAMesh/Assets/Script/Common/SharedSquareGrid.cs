@@ -11,18 +11,18 @@
         public int JobLength => Resolution + 1;
         public int Resolution { get; set; }
 
-        public void Execute<S>(int z, S streams) where S : struct, IMeshStreams
+        public void Execute<S>(int u, S streams) where S : struct, IMeshStreams
         {
-            int vi = (Resolution + 1) * z;
-            int ti = 2 * Resolution * (z - 1);
+            int vi = (Resolution + 1) * u;
+            int ti = 2 * Resolution * (u - 1);
 
             var vertex = new Vertex();
             vertex.normal.y = 1f;
             vertex.tangent.xw = float2(1f, -1f);
 
             vertex.position.x = -0.5f;
-            vertex.position.z = (float)z / Resolution - 0.5f;
-            vertex.texCoord0.y = (float)z / Resolution;
+            vertex.position.z = (float)u / Resolution - 0.5f;
+            vertex.texCoord0.y = (float)u / Resolution;
             streams.SetVertex(vi, vertex);
 
             vi += 1;
@@ -33,7 +33,7 @@
                 vertex.texCoord0.x = (float)x / Resolution;
                 streams.SetVertex(vi, vertex);
 
-                if (z > 0)
+                if (u > 0)
                 {
                     streams.SetTriangle(ti, vi + int3(-Resolution - 2, -1, -Resolution - 1));
                     streams.SetTriangle(ti + 1, vi + int3(-Resolution - 1, -1, 0));
