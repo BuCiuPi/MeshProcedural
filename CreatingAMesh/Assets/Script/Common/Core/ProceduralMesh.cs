@@ -30,9 +30,22 @@
             UVSphere
         }
 
-
+        public enum MaterialMode
+        {
+            Flat = 0,
+            Ripple = 1,
+            LatLon = 2,
+            CubeMap = 3
+        }
+        
         [SerializeField]
         MeshType meshType;
+        
+        [SerializeField]
+        MaterialMode materialMode;
+        
+        [SerializeField]
+        Material[] materials;
 
         private Vector3[] _vertices;
         private Vector3[] _normals;
@@ -63,6 +76,8 @@
             _vertices = null;
             _normals = null;
             _tangents = null;
+
+            GetComponent<MeshRenderer>().material = materials[(int)materialMode];
         }
 
         private void OnValidate()
