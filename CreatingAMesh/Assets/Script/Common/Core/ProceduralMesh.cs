@@ -17,6 +17,7 @@
             MeshJob<SharedTriangleGrid, SingleStream>.ScheduleParallel,
             MeshJob<PointyHexagonGrid, SingleStream>.ScheduleParallel,
             MeshJob<FlatHexagonGrid, SingleStream>.ScheduleParallel,
+            MeshJob<CubeSphere, SingleStream>.ScheduleParallel,
             MeshJob<UVSphere, SingleStream>.ScheduleParallel
         };
 
@@ -27,6 +28,7 @@
             SharedTriangleGrid,
             PointyHexagonGrid,
             FlatHexagonGrid,
+            CubeSphere,
             UVSphere
         }
 
